@@ -1,11 +1,17 @@
 # RUBY MACHINE
-FROM tscolari/builder-base
+FROM tscolari/base
 MAINTAINER Tiago Scolari <tscolari@gmail.com>
 
 RUN echo "deb http://ppa.launchpad.net/brightbox/ruby-ng-experimental/ubuntu  $(lsb_release -sc) main" > /etc/apt/sources.list.d/ruby.list && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C3173AA6 && \
     apt-get update && \
-    apt-get install ruby2.1 ruby2.1-dev -y --force-yes && \
+    apt-get install -y --force-yes \
+      ca-certificates \
+      libxslt-dev \
+      libxml2-dev \
+      libyaml-dev \
+      ruby2.2 \
+      ruby2.2-dev && \
     apt-get clean -y && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
